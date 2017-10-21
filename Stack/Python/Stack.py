@@ -13,7 +13,7 @@ class Stack:
         if(items != None):
             # Check the list of items is not too long
             if(len(items) > self.MAX_SIZE):
-                raise IndexError("The list has more than 64 items in it!")
+                raise IndexError("The list has more than th max number of items in it!")
             else:
                 # Put the items in the stack
                 for i in range(0, len(items)):
@@ -33,13 +33,19 @@ class Stack:
     
     def pop(self):
         """ Pop an item onto the stack """
-        item = self.stack_[self.top - 1]
-        self.top -= 1
-        return item
+        if(self.isEmpty()):
+            item = self.stack_[self.top - 1]
+            self.top -= 1
+            return item
+        else:
+            raise IndexError("Stack is empty, nothing to pop")
 
     def peek(self):
         """ Peek top item without popping it """
-        return self.stack_[self.top - 1]
+        if(self.isEmpty()):
+            return self.stack_[self.top - 1]
+        else:
+            raise IndexError("Stack is empty, nothing to peek")
 
     def clear(self):
         """ Clear the stack """
